@@ -15,6 +15,7 @@
 		9059C9B61F8F14E7008A8343 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059C9B51F8F14E7008A8343 /* main.m */; };
 		9059C9C01F8F14E7008A8343 /* DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059C9BF1F8F14E7008A8343 /* DemoTests.m */; };
 		9059C9CB1F8F14E7008A8343 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059C9CA1F8F14E7008A8343 /* DemoUITests.m */; };
+		9059C9DB1F8F1704008A8343 /* XJCollectionViewCenterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059C9DA1F8F1704008A8343 /* XJCollectionViewCenterLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		9059C9C61F8F14E7008A8343 /* DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9059C9CA1F8F14E7008A8343 /* DemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoUITests.m; sourceTree = "<group>"; };
 		9059C9CC1F8F14E7008A8343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9059C9D91F8F1704008A8343 /* XJCollectionViewCenterLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJCollectionViewCenterLayout.h; sourceTree = "<group>"; };
+		9059C9DA1F8F1704008A8343 /* XJCollectionViewCenterLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJCollectionViewCenterLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		9059C99A1F8F14E6008A8343 = {
 			isa = PBXGroup;
 			children = (
+				9059C9D81F8F16EC008A8343 /* XJCollectionViewCenterLayout */,
 				9059C9A51F8F14E7008A8343 /* Demo */,
 				9059C9BE1F8F14E7008A8343 /* DemoTests */,
 				9059C9C91F8F14E7008A8343 /* DemoUITests */,
@@ -130,6 +134,16 @@
 				9059C9CC1F8F14E7008A8343 /* Info.plist */,
 			);
 			path = DemoUITests;
+			sourceTree = "<group>";
+		};
+		9059C9D81F8F16EC008A8343 /* XJCollectionViewCenterLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9059C9D91F8F1704008A8343 /* XJCollectionViewCenterLayout.h */,
+				9059C9DA1F8F1704008A8343 /* XJCollectionViewCenterLayout.m */,
+			);
+			name = XJCollectionViewCenterLayout;
+			path = ../XJCollectionViewCenterLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9059C9AB1F8F14E7008A8343 /* ViewController.m in Sources */,
+				9059C9DB1F8F1704008A8343 /* XJCollectionViewCenterLayout.m in Sources */,
 				9059C9B61F8F14E7008A8343 /* main.m in Sources */,
 				9059C9A81F8F14E7008A8343 /* AppDelegate.m in Sources */,
 			);
