@@ -37,7 +37,7 @@
     switch (self.scrollDirection)
     {
         case UICollectionViewScrollDirectionHorizontal:
-            proposedCenterOffset = proposedContentOffset.x + self.collectionView.bounds.size.width / 2;
+            proposedCenterOffset = proposedContentOffset.x + self.collectionView.bounds.size.width / 2 + self.itemSize.width / 2 + self.minimumLineSpacing / 2;
             break;
 
         case UICollectionViewScrollDirectionVertical:
@@ -86,7 +86,7 @@
     switch (self.scrollDirection)
     {
         case UICollectionViewScrollDirectionHorizontal:
-            newOffset = candidateAttributesForRect.center.x - self.collectionView.bounds.size.width / 2;
+            newOffset = candidateAttributesForRect.center.x - self.collectionView.bounds.size.width / 2 - self.itemSize.width / 2 - self.minimumLineSpacing / 2;
             offset = newOffset - self.collectionView.contentOffset.x;
 
             if ((velocity.x < 0 && offset > 0) || (velocity.x > 0 && offset < 0))

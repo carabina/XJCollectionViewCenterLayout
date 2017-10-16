@@ -29,9 +29,10 @@ NSString *const CellIdentifier = @"CellIdentifier";
 - (void)setupCollectionView
 {
     CGFloat inset = 20;
-    CGFloat size = self.view.frame.size.width - inset * 2;
+    CGFloat spacing = 10.0f;
+    CGFloat size = (self.view.frame.size.width - inset * 2 - spacing) * .5;
     XJCollectionViewCenterLayout *layout = [[XJCollectionViewCenterLayout alloc] init];
-    layout.minimumLineSpacing = 10;
+    layout.minimumLineSpacing = spacing;
     layout.itemSize = CGSizeMake(size, size);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
@@ -39,7 +40,7 @@ NSString *const CellIdentifier = @"CellIdentifier";
     self.collectionView.contentInset = UIEdgeInsetsMake(0, inset, 0, inset);
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
+    //self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
 
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
 }
