@@ -8,7 +8,56 @@
 
 #import "XJCollectionViewCenterLayout.h"
 
+@interface XJCollectionViewCenterLayout ()
+
+/*
+     itemDisplayCount : 螢幕範圍能顯示的區塊數量
+ */
+@property (nonatomic, assign) NSInteger itemDisplayCount;
+
+@property (nonatomic, assign) CGFloat itemHeight;
+
+@property (nonatomic, assign) UIEdgeInsets contentInset;
+
+@property (nonatomic, assign) CGFloat adjustPos;
+
+@end
+
 @implementation XJCollectionViewCenterLayout
+
++ (instancetype)initWithItemDisplayCount:(NSInteger)itemDisplayCount
+                              itemHeight:(CGFloat)itemHiehgt
+                             itemSpacing:(CGFloat)itemSpacing
+                         scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+                            contentInset:(UIEdgeInsets)contentInset
+{
+    XJCollectionViewCenterLayout *layout = [[XJCollectionViewCenterLayout alloc] init];
+    layout.itemDisplayCount = itemDisplayCount;
+    layout.itemHeight = itemHiehgt;
+    layout.scrollDirection = scrollDirection;
+    layout.minimumLineSpacing = itemSpacing;
+    layout.contentInset = contentInset;
+    return layout;
+}
+
+- (void)prepareLayout
+{
+    [super prepareLayout];
+    self.collectionView.contentInset = self.contentInset;
+    
+    CGSize itemSize = self.collectionView.bounds.size;
+    itemSize.width -= self.collectionView.contentInset.left;
+    itemSize.width -= self.collectionView.contentInset.right;
+
+    if (self.itemDisplayCount > 1)
+    {
+        itemSize.width = (itemSize.width - ((self.itemDisplayCount - 1) * self.minimumLineSpacing)) / self.itemDisplayCount;
+        CGFloat rate = (self.itemDisplayCount % 2) ? 1.0f : 0.5f;
+        self.adjustPos = (itemSize.width + self.minimumLineSpacing) * rate - self.minimumLineSpacing;
+    }
+    itemSize.height = self.itemHeight ? : itemSize.width;
+    self.itemSize = itemSize;
+}
 
 - (CGRect)determineProposedRectWtihProposedContentOffset:(CGPoint)proposedContentOffset
 {
@@ -37,11 +86,12 @@
     switch (self.scrollDirection)
     {
         case UICollectionViewScrollDirectionHorizontal:
-            proposedCenterOffset = proposedContentOffset.x + self.collectionView.bounds.size.width / 2 + self.itemSize.width / 2 + self.minimumLineSpacing / 2;
+        {
+            proposedCenterOffset = proposedContentOffset.x + (self.collectionView.bounds.size.width * .5) + self.adjustPos;
             break;
-
+        }
         case UICollectionViewScrollDirectionVertical:
-            proposedCenterOffset = proposedContentOffset.y + self.collectionView.bounds.size.height / 2;
+            proposedCenterOffset = proposedContentOffset.y + (self.collectionView.bounds.size.height * .5) + self.adjustPos;
             break;
     }
 
@@ -86,7 +136,7 @@
     switch (self.scrollDirection)
     {
         case UICollectionViewScrollDirectionHorizontal:
-            newOffset = candidateAttributesForRect.center.x - self.collectionView.bounds.size.width / 2 - self.itemSize.width / 2 - self.minimumLineSpacing / 2;
+            newOffset = candidateAttributesForRect.center.x - (self.collectionView.bounds.size.width * .5) - self.adjustPos;
             offset = newOffset - self.collectionView.contentOffset.x;
 
             if ((velocity.x < 0 && offset > 0) || (velocity.x > 0 && offset < 0))
@@ -97,7 +147,7 @@
             return CGPointMake(newOffset, proposedContentOffset.y);
 
         case UICollectionViewScrollDirectionVertical:
-            newOffset = candidateAttributesForRect.center.y - self.collectionView.bounds.size.height / 2;
+            newOffset = candidateAttributesForRect.center.y - (self.collectionView.bounds.size.height * .5) - self.adjustPos;
             offset = newOffset - self.collectionView.contentOffset.y;
 
             if ((velocity.y < 0 && offset > 0) || (velocity.y > 0 && offset < 0))
@@ -110,5 +160,11 @@
 
     return proposedContentOffset;
 }
+/*
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return itemSize;
+}*/
 
 @end

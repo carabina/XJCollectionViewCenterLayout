@@ -10,4 +10,14 @@
 
 @interface XJCollectionViewCenterLayout : UICollectionViewFlowLayout
 
+/*
+     itemDisplayCount : 螢幕範圍能顯示的區塊數量
+ */
+
++ (instancetype)initWithItemDisplayCount:(NSInteger)itemDisplayCount
+                              itemHeight:(CGFloat)itemHiehgt
+                             itemSpacing:(CGFloat)itemSpacing
+                         scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+                            contentInset:(UIEdgeInsets)contentInset;
+
 @end
