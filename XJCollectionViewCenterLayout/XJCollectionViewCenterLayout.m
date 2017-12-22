@@ -53,7 +53,7 @@
     {
         itemSize.width = (itemSize.width - ((self.itemDisplayCount - 1) * self.minimumLineSpacing)) / self.itemDisplayCount;
         CGFloat rate = (self.itemDisplayCount % 2) ? 1.0f : 0.5f;
-        self.adjustPos = (itemSize.width + self.minimumLineSpacing) * rate - self.minimumLineSpacing;
+        self.adjustPos = (itemSize.width + self.minimumLineSpacing) * rate;
     }
     itemSize.height = self.itemHeight ? : itemSize.width;
     self.itemSize = itemSize;
